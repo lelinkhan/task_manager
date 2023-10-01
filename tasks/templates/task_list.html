@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Task List {% endblock title %}
+{% block main-content %}
+
+<div class="container">
+  <h1>Task List</h1>
+  <div style="text-align:right; padding-bottom:4px">
+      <a href="{% url 'task-create' %}"><button class="btn btn-success">Create New Task</button></a>
+      <a href="{% url 'task-photo-create' %}"><button class="btn btn-success">Create PhotoTask</button></a>
+    </div>
+      <form class="d-flex" method="get" action="{% url 'search' %}">
+           <input class="form-control me-2" name="query" type="text" placeholder="Search" aria-label="Search">
+           <button class="btn btn-warning" type="submit">Search</button>
+      </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Number</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Due Date</th>
+        <th>Priority</th>
+        <th>Complete</th>
+        <th>Photo</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for task in tasks %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>{{ task.due_date }}</td>
+        <td>{{ task.get_priority_display }}</td>
+        <td>
+          {% if task.complete %}
+          <span class="badge badge-success">Complete</span>
+          {% else %}
+          <span class="badge badge-warning">Incomplete</span>
+          {% endif %}
+        </td>
+        <td>
+        {% for images in tasksimg %}
+          {% if images.id == task.id %}
+            <img src="{{ images.photo.url }}" alt="" width="100" height="50">
+           {% endif %}
+      {% empty %}
+        <p>No image found</p>
+      {% endfor %}
+
+        </td>
+        <td>
+          <div style="display: flex;">
+            {% if request.user == task.creator %}
+              <a href="{% url 'task-detail' task.id %}" class="btn btn-primary btn-sm">Details</a>
+              <span class="btn-separator">|</span>
+              <a href="{% url 'task-update' task.id %}" class="btn btn-warning btn-sm">Update</a>
+              <span class="btn-separator">|</span>
+              <a href="{% url 'task-delete' task.id %}" class="btn btn-danger btn-sm">Delete</a>
+            {% else %}
+              <a href="{% url 'task-detail' task.id %}" class="btn btn-primary btn-sm">Details</a>
+              <button class="btn btn-danger" disabled>Update</button>
+              <button class="btn btn-info" disabled>Delete</button>
+            {% endif %}
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+</div>
+{% endblock main-content %}

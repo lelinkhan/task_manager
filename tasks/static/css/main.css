@@ -1,0 +1,9 @@
+/* Add this CSS to your project's stylesheet */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Ensures the container takes the full height of the viewport */
+}

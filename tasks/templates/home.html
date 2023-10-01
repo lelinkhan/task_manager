@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Login and Registration Buttons</title>
+    <style>
+        body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.container {
+    text-align: center;
+}
+
+.login-button,
+.register-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.login-button:hover {
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+.register-button:hover {
+    background-color: #2ecc71;
+    transform: scale(1.1);
+}
+h1{
+    color: red;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>You must need to complete registration and login for Task Manager</h1>
+        <a href="{% url 'login' %}"><button class="login-button">Login</button></a>
+        <a href="{% url 'registration' %}"><button class="register-button">Register</button></a>
+    </div>
+</body>
+</html>

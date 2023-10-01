@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Product Detail{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <h2 class="">Search Result...</h2>
+    <hr>
+    <br>
+    <h3 class="text-center text-warning">{{message}}</h3>
+    {% for t in task %}
+    <div class="row">
+          <div class="col-sm-6 text-center align-self-center">
+           <img height="250" width="250" src="{{t.photo.url}}" alt="Task Image Not Found" class="img-fluid img-thumbnail">
+          </div>
+          <div class="col-sm-5 offset-sm-1">
+           <h2> Title: {{t.title}}</h2>
+           <hr>
+           <p> Description: {{t.description}}</p> <br>
+            <h3>{{t.due_date}}</h3>
+            <h3>{{t.priority}}</h3>
+            <h3>{{t.is_complete}}</h3>
+            <h3></h3>
+          </div>
+         </div>
+    <hr>
+    <br>
+    {% endfor %}
+</div>
+{% endblock main-content %}
+

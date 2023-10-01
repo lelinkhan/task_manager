@@ -1,0 +1,36 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Task List {% endblock title %}
+
+{% block main-content %}
+    <div class="container">
+        <div class="row my-5">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Upload Photos for Task</h1>
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="task_title" class="form-label">Select Task Title:</label>
+                                <select id="task_title" name="task_title" class="form-select">
+                                    {% for task in tasks %}
+                                        <option value="{{ task.id }}">{{ task.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="photo" class="form-label">Upload Photo:</label>
+                                <input type="file" id="photo" name="photo" class="form-control">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Upload Photo</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock main-content %}
+

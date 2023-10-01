@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Create Task {% endblock title %}
+{% block main-content %}
+
+    <style>
+        /* Apply styles to labels */
+        label {
+       display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        /* Apply styles to text inputs */
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Apply styles to select elements */
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        /* Apply styles to the submit button */
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+
+
+
+<div class="container">
+ <div class="row my-3">
+  <div class="col-sm-6 offset-sm-3">
+   <h3>Create Task</h3>
+   <hr>
+
+   <form action="" method="POST" novalidate class="shadow p-5">
+    {% for message in messages %}
+     <p class=" text-center text-success mb-5">{{message}}</p>
+    {% endfor %}
+    {% csrf_token %}
+     {{ form.as_p }}
+    <div class="text-end">
+     <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+   </form>
+  </div>
+ </div>
+</div>
+{% endblock main-content %}
+
